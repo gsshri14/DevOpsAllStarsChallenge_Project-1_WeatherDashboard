@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e3f2fd;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #1976d2;
+            margin-top: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+        button {
+            background-color: #1976d2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #1565c0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        li {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        .error {
+            background-color: #ffcccb;
+            color: #d32f2f;
+        }
+        .success {
+            background-color: #c8e6c9;
+            color: #388e3c;
+        }
+        .weather-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: left;
+            width: 100%;
+            max-width: 400px;
+        }
+        .weather-info h2 {
+            margin: 0 0 10px;
+        }
+        .footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<h1>Weather Dashboard</h1>
+<form action="{{ url_for('fetch_weather') }}" method="post">
+    <label for="city">Enter city name:</label>
+    <input type="text" id="city" name="city" required>
+    <button type="submit">Fetch Weather</button>
+</form>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<ul>
+    {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+{% if weather_info %}
+<div class="weather-info">
+    <h2>Weather for {{ weather_info.city }}</h2>
+    <p>Temperature: {{ weather_info.temp }}°F</p>
+    <p>Feels like: {{ weather_info.feels_like }}°F</p>
+    <p>Humidity: {{ weather_info.humidity }}%</p>
+    <p>Conditions: {{ weather_info.description }}</p>
+</div>
+{% endif %}
+
+<div class="footer">
+    © 2025 Weather Dashboard. All rights reserved.
+</div>
+</body>
+</html>

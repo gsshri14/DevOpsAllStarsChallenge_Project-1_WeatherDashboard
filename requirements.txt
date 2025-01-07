@@ -14,3 +14,6 @@ self~=2020.12.3
 
 # Botocore is a low-level interface to a growing number of Amazon Web Services.
 botocore~=1.29.165
+
+# Flask is a lightweight WSGI web application framework.
+Flask==2.3.2
