@@ -27,6 +27,7 @@ The Weather Dashboard is a Python application that fetches weather data from the
 - `requests` library for making HTTP requests.
 - `python-dotenv` library for loading environment variables from a `.env` file.
 - `Flask` library for the web interface.
+- Docker for containerization.
 
 ## Project Structure
 - `src/main/WeatherDashboard.py`: Main application code.
@@ -35,13 +36,16 @@ The Weather Dashboard is a Python application that fetches weather data from the
 - `README.md`: Project documentation.
 - `requirements.txt`: List of dependencies.
 - `.env`: Environment variables file (not included in the repository to avoid exposure to sensitive data).
+- `Dockerfile`: Docker configuration file.
+- `build.sh`: Shell script to build the Docker image.
+- `run.sh`: Shell script to run the Docker container.
 
 ## Installation
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/saacertificate1403/weather-dashboard.git
-    cd weather-dashboard
+    git clone https://github.com/gsshri14/DevOpsAllStarsChallenge_Project-1_WeatherDashboard.git
+    cd DevOpsAllStarsChallenge_Project-1_WeatherDashboard
     ```
 
 2. Create a virtual environment and activate it:
@@ -60,6 +64,8 @@ The Weather Dashboard is a Python application that fetches weather data from the
     OPENWEATHER_API_KEY=your_openweather_api_key
     AWS_BUCKET_NAME=your_s3_bucket_name
     FLASK_SECRET_KEY=your_flask_secret_key
+    AWS_ACCESS_KEY_ID=your_aws_access_key_id
+    AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
     ```
 
 ## Usage
@@ -79,6 +85,16 @@ The Weather Dashboard is a Python application that fetches weather data from the
     python -m unittest discover -s src/test
     ```
 
+4. To build the Docker image:
+    ```sh
+    ./build.sh
+    ```
+
+5. To run the Docker container:
+    ```sh
+    ./run.sh
+    ```
+
 ## Generating a Flask Secret Key
 
 If you do not have a Flask secret key, you can generate one using the following Python script:
@@ -86,7 +102,6 @@ If you do not have a Flask secret key, you can generate one using the following 
 1. Create a file named `generate_secret_key.py` with the following content:
     ```python
     import secrets
-
     secret_key = secrets.token_hex(16)
     print(secret_key)
     ```
