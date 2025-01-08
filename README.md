@@ -59,7 +59,7 @@ The Weather Dashboard is a Python application that fetches weather data from the
     pip install -r requirements.txt
     ```
 
-4. Create a `.env` file in the root directory of the project and add your OpenWeather API key, AWS S3 bucket name, and Flask secret key:
+4. Create a `.env` file in the root directory of the project and add all necessary keys and secrets:
     ```env
     OPENWEATHER_API_KEY=your_openweather_api_key
     AWS_BUCKET_NAME=your_s3_bucket_name
@@ -70,27 +70,22 @@ The Weather Dashboard is a Python application that fetches weather data from the
 
 ## Usage
 
-1. Run the main script to fetch weather data for the specified cities and save it to the S3 bucket:
-    ```sh
-    python src/main/WeatherDashboard.py
-    ```
-
-2. To run the Flask web application:
+1. To run the Flask web application:
     ```sh
     python src/main/app.py
     ```
 
-3. To run the unit tests, use the following command:
+2. To run the unit tests, use the following command:
     ```sh
     python -m unittest discover -s src/test
     ```
 
-4. To build the Docker image:
+3. To build the Docker image:
     ```sh
     ./build.sh
     ```
 
-5. To run the Docker container:
+4. To run the Docker container:
     ```sh
     ./run.sh
     ```
